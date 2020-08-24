@@ -11,6 +11,7 @@ import android.net.Uri;
 import androidx.core.app.NotificationCompat;
 
 public class AlertReceiver extends BroadcastReceiver {
+    public static boolean ringtoneplaying;
     public static Ringtone r;
 
     @Override
@@ -18,7 +19,9 @@ public class AlertReceiver extends BroadcastReceiver {
 
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
              r = RingtoneManager.getRingtone(context, notification);
+
             r.play();
+            ringtoneplaying=true;
 
         NotificationHelper notificationHelper=new NotificationHelper(context);
         NotificationCompat.Builder nb=notificationHelper.getChannelNotification();

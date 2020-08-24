@@ -1,5 +1,6 @@
 package com.example.clock;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -20,20 +21,28 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 import static com.example.clock.AlertReceiver.r;
+import static com.example.clock.AlertReceiver.ringtoneplaying;
+
 
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private TextView textView;
     private Button buttonSetAlarm;
     private Button buttonCancel;
+    private Button btnmainmenu;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Alarm Clock");
+
         textView = findViewById(R.id.textView);
         buttonSetAlarm = findViewById(R.id.set_alarm);
         buttonCancel = findViewById(R.id.cancel_alarm);
+        btnmainmenu=(Button)findViewById(R.id.mainmenu);
 
         buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             public void onClick(View view) {
                 canelAlarm();
 
+            }
+        });
+        btnmainmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,Mainmenu.class);
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -85,12 +102,18 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
     private void canelAlarm()
     {
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent=new Intent(this,AlertReceiver.class);
-        PendingIntent pendingIntent= PendingIntent.getBroadcast(this,1,intent,0);
-        alarmManager.cancel(pendingIntent);
-         r.stop();
-        textView.setText("Alarm Cancelled");
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(this, AlertReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+            alarmManager.cancel(pendingIntent);
+
+            if(ringtoneplaying){
+                r.stop();
+            }
+            textView.setText("Alarm Cancelled");
+
 
     }
+
+
 }
