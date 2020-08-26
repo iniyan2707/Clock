@@ -4,7 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context="com.example.clock.MainActivity">
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="172dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/ringtone_text"
+        android:layout_below="@+id/ringtone_text"
+        android:layout_centerHorizontal="true"
+        >
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:text="sound-1"
+            android:textColorLink="#673AB7"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sound-2"
+            android:freezesText="true"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sound-3"
+            android:freezesText="true"
+
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ringtone_text"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:text="Select alarm ringtone:"
+        android:layout_below="@+id/mainmenu"/>
+
 
     <Button
         android:id="@+id/set_alarm"
@@ -26,14 +74,25 @@
         android:text="No Alarm set"
         android:textSize="24dp" />
 
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_below="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Enter weekday to cancel"
+        />
+
     <Button
         android:id="@+id/cancel_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/edittext"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Cancel Alarm" />
+        android:text="Cancel" />
 
     <Button
         android:id="@+id/mainmenu"
